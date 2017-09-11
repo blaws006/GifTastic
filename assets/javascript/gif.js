@@ -2,7 +2,8 @@ $(document).ready(function() {
 
   //Need an array variable to list heroes in
   var heroList = ["Thor", "Iron-Man", "Spider-Man", "Hulk", "Black Panther"];
-  
+
+  var imageNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 //We'll need an API call that pulls comic book heroes
   // Needs to List 10
 // We need a function that appends a button with the name a corresponding hero to label the button in the comicButtons div
@@ -31,11 +32,48 @@ $(document).ready(function() {
   	console.log(response)
   	for(var i = 0; i < response.data.length; i++){
   		
-    console.log(response.data[i].images.downsized.url);
-    $("#heroes").append("<img src='" + response.data[i].images.downsized.url + "'>")
-	}
+	for(var i = 0; i < imageNum.length; i++){
+	
+    console.log(response.data[i].images.fixed_width_still.url);
+    $("#heroes").append("<img id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_width_still.url +"'>")	
+    //We need to be able to play and pause the gif...
+    //How do I turn [] into a number? i will not work in this instance
+}
+}
+	var clicked = false;
+	var clickCount = 0;
+	$("img").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(this)
+		console.log(clickCount);
+		console.log("clicked")
+		if (clickCount === 1){
+		$(this).replaceWith("<img id='"+ imageNum[this.id] +"'src='" + response.data[this.id].images.fixed_width.url + "'>");
+		}
+		else if(clickCount === 2) {
+			console.log(this)
+		$(this).replaceWith("<img id='"+ imageNum[this.id] +"'src='" + response.data[this.id].images.fixed_width_still.url + "'>");
+		clickCount = 0;
+		return clickCount;
+		clicked = false;
+		return clicked;
+		}
+	});
+// $(".toggle").click(function(){
+		
+// 		console.log("clicked")
+// 		$(this).replaceWith("<img id='"+ imageNum[this.id] +"'src='" + response.data[this.id].images.fixed_width.url + "'>");
+// 		clicked
+// $("img").click(function(){		 
+// 	console.log(this)
+// 		$(this).replaceWith("<img id='"+ imageNum[this.id] +"'src='" + response.data[this.id].images.fixed_width_still.url + "'>");
+// 		})
+// 	});    
 });
+ 	
 });
+
 };
 
 heroButton();
