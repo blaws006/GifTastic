@@ -1,13 +1,13 @@
 $(document).ready(function() {
 
   //Need an array variable to list heroes in
-  var heroList = ["Thor", "Iron-Man", "Spider-Man", "Hulk", "Black Panther"];
-
-  var imageNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  var heroList = ["Thor", "Iron Man", "Spider-Man", "Hulk", "Black Panther"];
+  var imageNum = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+  var toggleNum = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
 //We'll need an API call that pulls comic book heroes
   // Needs to List 10
 // We need a function that appends a button with the name a corresponding hero to label the button in the comicButtons div
-  
+
   function heroButton() {
     for(var i = 0; i < heroList.length; i++){
       var buttons = $("<button type='button' class='btn btn-primary btn-sm'>");
@@ -15,9 +15,20 @@ $(document).ready(function() {
       buttons.text(heroList[i]);
       $("#comicButtons").append(buttons);
     }
-
+   
+    $("input#addComic").click(function(){
+ 		var submit = $("input#hero-input").val();
+    	heroList.push(submit);
+    	buttons;
+    	buttons.attr("id", submit);
+      	buttons.text(submit);
+      	$("#comicButtons").append(buttons);
+      	console.log(heroList);
+    });
+  };
+ heroButton();
     //Click the button, and gif search appears on screen
-  $("button").click(function(){
+  $("button, .new").click(function(){
   	console.log("clicked");
   	$("#heroes").empty();
 	var queryEq = this.id;
@@ -29,53 +40,200 @@ $(document).ready(function() {
   {url: queryURL,
     method: 'GET'
   }).done(function(response){
+
   	console.log(response)
   	for(var i = 0; i < response.data.length; i++){
   		
 	for(var i = 0; i < imageNum.length; i++){
 	
-    console.log(response.data[i].images.fixed_width_still.url);
-    $("#heroes").append("<img id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_width_still.url +"'>")	
+
+		$("#heroes").append("<img class='img-fluid toggleOff" + toggleNum[i] + "' id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_height_still.url +"'>")	
+		$("#heroes").append("<img class='img-fluid toggleOn"+ toggleNum[i] + "' id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_height.url +"'>")	
+
+
     //We need to be able to play and pause the gif...
     //How do I turn [] into a number? i will not work in this instance
 }
+
+
 }
-	var clicked = false;
+	
+var clicked = false;
 	var clickCount = 0;
-	$("img").click(function(){
+
+	$("img#zero").click(function(){
 		clickCount++;
 		clicked = true;
-		console.log(this)
 		console.log(clickCount);
-		console.log("clicked")
 		if (clickCount === 1){
-		$(this).replaceWith("<img id='"+ imageNum[this.id] +"'src='" + response.data[this.id].images.fixed_width.url + "'>");
+		 $(".toggleOnZero").show()
+		$(".toggleOffZero").hide()			
 		}
 		else if(clickCount === 2) {
-			console.log(this)
-		$(this).replaceWith("<img id='"+ imageNum[this.id] +"'src='" + response.data[this.id].images.fixed_width_still.url + "'>");
-		clickCount = 0;
+		$(".toggleOnZero").hide()
+		$(".toggleOffZero").show()
+			clickCount = 0;
+			console.log(this)	
 		return clickCount;
 		clicked = false;
-		return clicked;
 		}
 	});
-// $(".toggle").click(function(){
-		
-// 		console.log("clicked")
-// 		$(this).replaceWith("<img id='"+ imageNum[this.id] +"'src='" + response.data[this.id].images.fixed_width.url + "'>");
-// 		clicked
-// $("img").click(function(){		 
-// 	console.log(this)
-// 		$(this).replaceWith("<img id='"+ imageNum[this.id] +"'src='" + response.data[this.id].images.fixed_width_still.url + "'>");
-// 		})
-// 	});    
+$("img#one").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(clickCount);
+		if (clickCount === 1){
+		 $(".toggleOnOne").show()
+		$(".toggleOffOne").hide()			
+		}
+		else if(clickCount === 2) {
+		$(".toggleOnOne").hide()
+		$(".toggleOffOne").show()
+			clickCount = 0;
+			console.log(this)	
+		return clickCount;
+		clicked = false;
+		}
+	});
+$("img#two").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(clickCount);
+		if (clickCount === 1){
+		 $(".toggleOnTwo").show()
+		$(".toggleOffTwo").hide()			
+		}
+		else if(clickCount === 2) {
+		$(".toggleOnTwo").hide()
+		$(".toggleOffTwo").show()
+			clickCount = 0;
+			console.log(this)	
+		return clickCount;
+		clicked = false;
+		}
+	});
+$("img#three").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(clickCount);
+		if (clickCount === 1){
+		 $(".toggleOnThree").show()
+		$(".toggleOffThree").hide()			
+		}
+		else if(clickCount === 2) {
+		$(".toggleOnThree").hide()
+		$(".toggleOffThree").show()
+			clickCount = 0;
+			console.log(this)	
+		return clickCount;
+		clicked = false;
+		}
+	});
+$("img#four").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(clickCount);
+		if (clickCount === 1){
+		 $(".toggleOnFour").show()
+		$(".toggleOffFour").hide()			
+		}
+		else if(clickCount === 2) {
+		$(".toggleOnFour").hide()
+		$(".toggleOffFour").show()
+			clickCount = 0;
+			console.log(this)	
+		return clickCount;
+		clicked = false;
+		}
+	});
+$("img#five").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(clickCount);
+		if (clickCount === 1){
+		 $(".toggleOnFive").show()
+		$(".toggleOffFive").hide()			
+		}
+		else if(clickCount === 2) {
+		$(".toggleOnFive").hide()
+		$(".toggleOffFive").show()
+			clickCount = 0;
+			console.log(this)	
+		return clickCount;
+		clicked = false;
+		}
+	});
+$("img#six").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(clickCount);
+		if (clickCount === 1){
+		 $(".toggleOnSix").show()
+		$(".toggleOffSix").hide()			
+		}
+		else if(clickCount === 2) {
+		$(".toggleOnSix").hide()
+		$(".toggleOffSix").show()
+			clickCount = 0;
+			console.log(this)	
+		return clickCount;
+		clicked = false;
+		}
+	});
+$("img#seven").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(clickCount);
+		if (clickCount === 1){
+		 $(".toggleOnSeven").show()
+		$(".toggleOffSeven").hide()			
+		}
+		else if(clickCount === 2) {
+		$(".toggleOnSeven").hide()
+		$(".toggleOffSeven").show()
+			clickCount = 0;
+			console.log(this)	
+		return clickCount;
+		clicked = false;
+		}
+	});
+$("img#eight").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(clickCount);
+		if (clickCount === 1){
+		 $(".toggleOnEight").show()
+		$(".toggleOffEight").hide()			
+		}
+		else if(clickCount === 2) {
+		$(".toggleOnEight").hide()
+		$(".toggleOffEight").show()
+			clickCount = 0;
+			console.log(this)	
+		return clickCount;
+		clicked = false;
+		}
+	});
+$("img#nine").click(function(){
+		clickCount++;
+		clicked = true;
+		console.log(clickCount);
+		if (clickCount === 1){
+		 $(".toggleOnNine").show()
+		$(".toggleOffNine").hide()			
+		}
+		else if(clickCount === 2) {
+		$(".toggleOnNine").hide()
+		$(".toggleOffNine").show()
+			clickCount = 0;
+			console.log(this)	
+		return clickCount;
+		clicked = false;
+		}
+	});
+
 });
- 	
+
 });
-
-};
-
-heroButton();
-
+ 
 });
