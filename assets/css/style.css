@@ -1,3 +1,23 @@
+body {	
+	background: url("../images/gaming-pattern.png");
+}
+
+
 .toggleOnZero, .toggleOnOne, .toggleOnTwo, .toggleOnThree, .toggleOnFour, .toggleOnFive, .toggleOnSix, .toggleOnSeven, .toggleOnEight, .toggleOnNine  {
 	display: none;
+}
+
+#heroes p { 
+	font-weight: bold;
+ }
+
+ .button-style {
+  background-color: #4aaaa5;
+  border: 1px solid #5E7F7E;
+  
+}
+
+.button-style:hover {
+  
+  background-color: #5E7F7E;
 }

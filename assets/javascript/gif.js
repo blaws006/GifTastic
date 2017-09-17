@@ -11,7 +11,7 @@ $(document).ready(function() {
   function heroButton() {
   	$("#comicButtons").empty();
     for(var i = 0; i < heroList.length; i++){
-      var buttons = $("<button type='button' class='btn btn-primary btn-sm'>");
+      var buttons = $("<button type='button' class='btn btn-primary btn-sm button-style'>");
       buttons.attr("id", heroList[i]);
       buttons.attr("data-hero", heroList[i])
       buttons.text(heroList[i]);
@@ -50,9 +50,27 @@ heroButton();
 	for(var i = 0; i < imageNum.length; i++){
 	
 
-		$("#heroes").append("<img class='img-fluid toggleOff" + toggleNum[i] + "' id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_height_still.url +"'>")	
-		$("#heroes").append("<img class='img-fluid toggleOn"+ toggleNum[i] + "' id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_height.url +"'>")	
+		// $("#heroes").append("<p>" + response.data[i].rating + "</p><img class='img-fluid toggleOff" + toggleNum[i] + "' id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_height_still.url +"'>")	
+		// $("#heroes").append("<img class='img-fluid toggleOn"+ toggleNum[i] + "' id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_height.url +"'>")	
 
+	var heroDiv = $("<div>");
+	heroDiv.addClass("col-sm-12 col-md-6 col-lg-2");
+	var ratingP = $("<p>")
+	ratingP.text("Rated: " + response.data[i].rating)
+	var ratingImgOn = $("<img>")
+	ratingImgOn.attr("src", response.data[i].images.fixed_height.url);
+	ratingImgOn.attr("id", imageNum[i])
+	ratingImgOn.addClass("img-fluid")
+	ratingImgOn.addClass("toggleOn" + toggleNum[i])
+	var ratingImgOff = $("<img>")
+	ratingImgOff.attr("src", response.data[i].images.fixed_height_still.url);
+	ratingImgOff.attr("id", imageNum[i])
+	ratingImgOff.addClass("img-fluid")
+	ratingImgOff.addClass("toggleOff" + toggleNum[i])
+	heroDiv.append(ratingImgOn)
+	heroDiv.append(ratingImgOff)
+	heroDiv.prepend(ratingP)
+	$("#heroes").append(heroDiv);	
 
     //We need to be able to play and pause the gif...
     //How do I turn [] into a number? i will not work in this instance
