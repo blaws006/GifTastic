@@ -9,26 +9,29 @@ $(document).ready(function() {
 // We need a function that appends a button with the name a corresponding hero to label the button in the comicButtons div
 
   function heroButton() {
+  	$("#comicButtons").empty();
     for(var i = 0; i < heroList.length; i++){
       var buttons = $("<button type='button' class='btn btn-primary btn-sm'>");
       buttons.attr("id", heroList[i]);
+      buttons.attr("data-hero", heroList[i])
       buttons.text(heroList[i]);
       $("#comicButtons").append(buttons);
-    }
-   
-    $("input#addComic").click(function(){
+    };
+ };
+heroButton();
+    $("#addComic").click(function(event){
+    	 	event.preventDefault();
  		var submit = $("input#hero-input").val();
+    	buttons = $("<button type='submit' class='btn btn-primary btn-sm'>");
     	heroList.push(submit);
-    	buttons;
-    	buttons.attr("id", submit);
-      	buttons.text(submit);
-      	$("#comicButtons").append(buttons);
       	console.log(heroList);
+      	
+      	heroButton();
+      
     });
-  };
- heroButton();
+   heroButton();
     //Click the button, and gif search appears on screen
-  $("button, .new").click(function(){
+ $(document).on("click", "button", function(event){
   	console.log("clicked");
   	$("#heroes").empty();
 	var queryEq = this.id;
@@ -235,5 +238,5 @@ $("img#nine").click(function(){
 });
 
 });
- 
+   
 });
