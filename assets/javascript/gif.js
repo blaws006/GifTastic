@@ -2,12 +2,15 @@ $(document).ready(function() {
 
   //Need an array variable to list heroes in
   var heroList = ["Thor", "Iron Man", "Spider-Man", "Hulk", "Black Panther"];
+  //This variable defines the class of image number
   var imageNum = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+ 	// This variable defines the id of Toggle Number 
   var toggleNum = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
-//We'll need an API call that pulls comic book heroes
+
   // Needs to List 10
 // We need a function that appends a button with the name a corresponding hero to label the button in the comicButtons div
-
+	
+//This function loops through the list of heroes and creates a button per hero	
   function heroButton() {
   	$("#comicButtons").empty();
     for(var i = 0; i < heroList.length; i++){
@@ -19,6 +22,7 @@ $(document).ready(function() {
     };
  };
 heroButton();
+//This function adds an additional button when the form is submitted with a new hero name
     $("#addComic").click(function(event){
     	 	event.preventDefault();
  		var submit = $("input#hero-input").val();
@@ -30,7 +34,8 @@ heroButton();
       
     });
    heroButton();
-    //Click the button, and gif search appears on screen
+    //Goes through the entire document and looks for button events and ensure they function as buttons
+    //Also define the API URL that will be called later to generate hero gifs
  $(document).on("click", "button", function(event){
   	console.log("clicked");
   	$("#heroes").empty();
@@ -38,21 +43,18 @@ heroButton();
 	console.log(this.id);
 	var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=8b447b4b060c42a9bd847406d1309c6b&q=" + queryEq + "&limit=10&offset=0&lang=en";
 	console.log(queryURL)
+
 	//AJAX API Call
   $.ajax(
   {url: queryURL,
     method: 'GET'
   }).done(function(response){
-
+  	//Once API call complete loop through JSON object and generate both gif and still jpg
   	console.log(response)
   	for(var i = 0; i < response.data.length; i++){
   		
 	for(var i = 0; i < imageNum.length; i++){
 	
-
-		// $("#heroes").append("<p>" + response.data[i].rating + "</p><img class='img-fluid toggleOff" + toggleNum[i] + "' id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_height_still.url +"'>")	
-		// $("#heroes").append("<img class='img-fluid toggleOn"+ toggleNum[i] + "' id='"+ imageNum[i] +"' src='" +response.data[i].images.fixed_height.url +"'>")	
-
 	var heroDiv = $("<div>");
 	heroDiv.addClass("col-sm-12 col-md-6 col-lg-2");
 	var ratingP = $("<p>")
@@ -72,13 +74,13 @@ heroButton();
 	heroDiv.prepend(ratingP)
 	$("#heroes").append(heroDiv);	
 
-    //We need to be able to play and pause the gif...
-    //How do I turn [] into a number? i will not work in this instance
+
 }
 
 
 }
-	
+
+// Click functions for the images that toggles between the gif and still jpg for each image
 var clicked = false;
 	var clickCount = 0;
 

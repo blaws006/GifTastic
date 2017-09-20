@@ -14,10 +14,11 @@ body {
  .button-style {
   background-color: #4aaaa5;
   border: 1px solid #5E7F7E;
-  
+  margin: 10px 5px;
 }
 
 .button-style:hover {
   
   background-color: #5E7F7E;
 }
+
