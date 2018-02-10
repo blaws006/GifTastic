@@ -1,5 +1,7 @@
 # GifTastic
 
+![GifTastic](https://media.giphy.com/media/3o7WIAUr8nvUDdGIBW/giphy.gif)
+
 GifTastic is a front-end app that brings in gifs in from the GIPHY API at the click of a button. Speaking of buttons, you can also create your own buttons with the subject matter of your choice and GIPHY will grab those things for you.
 
 ## Getting Started
