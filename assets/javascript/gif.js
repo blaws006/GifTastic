@@ -5,7 +5,7 @@ $(document).ready(function () {
 	//This variable defines the class of image number
 	var imageNum = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 	// This variable defines the id of Toggle Number 
-	var toggleNum = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
+	var toggleNum = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
 
 	// Needs to List 10
 	// We need a function that appends a button with the name a corresponding hero to label the button in the comicButtons div
@@ -23,13 +23,12 @@ $(document).ready(function () {
 	};
 	heroButton();
 	//This function adds an additional button when the form is submitted with a new hero name
-	$("#addComic").click(function (event) {
+	$(".addComic").click(function (event) {
 		event.preventDefault();
-		var submit = $("input#hero-input").val();
+		var submit = $("input.hero-input").val();
 		buttons = $("<button type='submit' class='btn btn-primary btn-sm'>");
     heroList.push(submit);
     heroButton();
-
 	});
 	heroButton();
 	//Goes through the entire document and looks for button events and ensure they function as buttons
