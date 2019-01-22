@@ -42,24 +42,15 @@ $(document).ready(function () {
           var imgMoveSrc = response.data[i].images.fixed_height.url;
           var rating = $('<p>');
           rating.text('Rated: ' + response.data[i].rating);
-          var imgTagStill = $('<img src="' + imgFixedSrc + '" class="img-fluid" id="' + i + '">');
+          var imgTagStill = $('<img src="' + imgFixedSrc + '" class="img-fluid" id="hero-' + i + '">');
           var imgTagMove = $('<img src="' + imgMoveSrc + '" class="img-fluid" id="' + i + '">');
           heroDiv.append(imgTagStill);
           heroDiv.prepend(rating);
           $("#heroes").append(heroDiv);
-        }
-        
-        $(this.id).click(function () {
-          count++;
-          if (count === 1) {
-            $(this).replaceWith(imgTagMove);
-            console.log(count);
-          } else if (count === 2) {
-            count = 0;
-            $(this).replaceWith(imgTagStill);
-            console.log(count);
-          }
-        });
+          // Create an array for still and moving img
+          // Clear arrays when button is pushed
+        };
+        // Make a function that loops through array and toggles images via a click event
       });
   });
 });
