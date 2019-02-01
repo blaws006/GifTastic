@@ -1,8 +1,7 @@
 $(document).ready(function () {
   //Need an array variable to list heroes in
   var heroList = ["Thor", "Iron Man", "Spider-Man", "Hulk", "Black Panther"];
-  var imgArrMoving, imgStill;
-  var count = 0;
+  var imgArrMoving, imgArrStill;
   // Function loops through the heroList array and creates the buttons with the hero names.
   function heroButton() {
     $('.comicButtons').empty();
@@ -54,16 +53,12 @@ $(document).ready(function () {
           imgArrStill.push(imgTagStill[0].outerHTML);
           imgArrMoving.push(imgTagMove[0].outerHTML);
         };
-        // Make a function that loops through array and toggles images via a click event
+        // Make a function that toggles images via a click event
         $('#heroes').on('click', function (e) {
           if (e.target.matches('.still')) {
-            imgArrStill.forEach((element, index) => {
-              $(e.target).replaceWith(imgArrMoving[e.target.id]);
-            });
+            $(e.target).replaceWith(imgArrMoving[e.target.id]);
           } else if (e.target.matches('.moving')) {
-            imgArrMoving.forEach((element, index) => {
-              $(e.target).replaceWith(imgArrStill[e.target.id]);
-            });
+            $(e.target).replaceWith(imgArrStill[e.target.id]);
           }
         });
       });
