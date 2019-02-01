@@ -1,6 +1,7 @@
 $(document).ready(function () {
   //Need an array variable to list heroes in
   var heroList = ["Thor", "Iron Man", "Spider-Man", "Hulk", "Black Panther"];
+  var imgArrMoving, imgStill;
   var count = 0;
   // Function loops through the heroList array and creates the buttons with the hero names.
   function heroButton() {
@@ -35,22 +36,36 @@ $(document).ready(function () {
         method: 'GET'
       })
       .done(function (response) {
-
+        // Clear arrays when button is pushed
+        imgArrStill = [];
+        imgArrMoving = [];
         for (var i = 0; i < response.data.length; i++) {
           var heroDiv = $('<div class="col-sm-12 col-md-6 col-lg-2">');
           var imgFixedSrc = response.data[i].images.fixed_height_still.url;
           var imgMoveSrc = response.data[i].images.fixed_height.url;
           var rating = $('<p>');
           rating.text('Rated: ' + response.data[i].rating);
-          var imgTagStill = $('<img src="' + imgFixedSrc + '" class="img-fluid" id="hero-' + i + '">');
-          var imgTagMove = $('<img src="' + imgMoveSrc + '" class="img-fluid" id="' + i + '">');
+          var imgTagStill = $('<img src="' + imgFixedSrc + '" class="img-fluid still" id="' + i + '">');
+          var imgTagMove = $('<img src="' + imgMoveSrc + '" class="img-fluid moving" id="' + i + '">');
           heroDiv.append(imgTagStill);
           heroDiv.prepend(rating);
           $("#heroes").append(heroDiv);
           // Create an array for still and moving img
-          // Clear arrays when button is pushed
+          imgArrStill.push(imgTagStill[0].outerHTML);
+          imgArrMoving.push(imgTagMove[0].outerHTML);
         };
         // Make a function that loops through array and toggles images via a click event
+        $('#heroes').on('click', function (e) {
+          if (e.target.matches('.still')) {
+            imgArrStill.forEach((element, index) => {
+              $(e.target).replaceWith(imgArrMoving[e.target.id]);
+            });
+          } else if (e.target.matches('.moving')) {
+            imgArrMoving.forEach((element, index) => {
+              $(e.target).replaceWith(imgArrStill[e.target.id]);
+            });
+          }
+        });
       });
   });
 });
