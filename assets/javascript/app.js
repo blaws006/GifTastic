@@ -5,6 +5,7 @@ $(document).ready(function () {
   // Function loops through the heroList array and creates the buttons with the hero names.
   function heroButton() {
     $('.comicButtons').empty();
+    $("input.hero-input").val('');
     for (var i = 0; i < heroList.length; i++) {
       var buttons = $("<button type='button' class='btn btn-primary btn-sm button-style'>");
       buttons.attr("id", heroList[i]);
@@ -19,9 +20,11 @@ $(document).ready(function () {
   $(".addComic").click(function (event) {
     event.preventDefault();
     var submit = $("input.hero-input").val();
-    buttons = $("<button type='submit' class='btn btn-primary btn-sm'>");
-    heroList.push(submit);
-    heroButton();
+    if (submit !== '') {
+      buttons = $("<button type='submit' class='btn btn-primary btn-sm'>");
+      heroList.push(submit);
+      heroButton();
+    }
   });
   // Goes through the entire document and looks for button events and ensure they function as buttons
   // Also define the API URL that will be called later to generate hero gifs
