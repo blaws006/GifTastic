@@ -41,6 +41,11 @@ $(document).ready(function () {
         // Clear arrays when button is pushed
         imgArrStill = [];
         imgArrMoving = [];
+        // Loops through the response json and
+        // 1) Collects the img sources for the moving and still images
+        // 2) Appends src urls to img tags
+        // 3) Appends still img tags to each heroDiv
+        // 4) Appends heroDiv to container Div
         for (var i = 0; i < response.data.length; i++) {
           var heroDiv = $('<div class="col-sm-12 col-md-6 col-lg-2">');
           var imgFixedSrc = response.data[i].images.fixed_height_still.url;
