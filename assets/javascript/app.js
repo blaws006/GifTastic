@@ -67,7 +67,6 @@ $(document).ready(function () {
             $(e.target).replaceWith(imgArrMoving[e.target.id]);
           } else if (e.target.matches('.moving')) {
             $(e.target).replaceWith(imgArrStill[e.target.id]);
-           
           }
         });
       });
